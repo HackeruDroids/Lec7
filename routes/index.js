@@ -28,10 +28,11 @@ router.get('/students', function (req, res, next) {
           }
 
           done();
-          res.render('students', {
-            title: "Student List",
-            students: result.rows
-          });
+          res.json({students:result.rows});
+          // res.render('students', {
+          //   title: "Student List",
+          //   students: result.rows
+          // });
         });
       });
 });
@@ -56,7 +57,7 @@ router.get('/students', function (req, res, next) {
               message: err.message
             });
           }
-          var SQL = "INSERT INTO Students(firstName, lastName, email) VALUES($1, $2, $3)";
+          var SQL = "INSERT INTO Students(firstName, lastName, email) VALUES($1, $2, $3);";
           client.query(SQL, [firstName, lastName, email], function (err, result) {
             if (err) {
               return res.render('error', {

@@ -28,11 +28,11 @@ router.get('/students', function (req, res, next) {
           }
 
           done();
-          res.json({students:result.rows});
-          // res.render('students', {
-          //   title: "Student List",
-          //   students: result.rows
-          // });
+          // res.json({students:result.rows});
+          res.render('students', {
+            title: "Student List",
+            students: result.rows
+          });
         });
       });
 });
